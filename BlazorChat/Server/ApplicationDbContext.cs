@@ -17,5 +17,7 @@ namespace BlazorChat.Server
 
 
         public DbSet<Message> Messages { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
