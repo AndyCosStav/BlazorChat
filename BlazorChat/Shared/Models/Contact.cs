@@ -9,6 +9,6 @@ namespace BlazorChat.Shared.Models
     {
         public int Id { get; set; }
         public string OwnerId { get; set; }
-        public virtual List<string> Users { get; set;  }
+       public string ContactMember { get; set;  }
     }
 }
