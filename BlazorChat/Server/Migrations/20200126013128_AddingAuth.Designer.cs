@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorChat.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200125041311_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20200126013128_AddingAuth")]
+    partial class AddingAuth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,6 @@ namespace BlazorChat.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MessageContent")
                         .HasColumnType("nvarchar(max)");
 
@@ -43,42 +40,9 @@ namespace BlazorChat.Server.Migrations
                     b.Property<DateTime>("TimeSent")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Messages");
-                });
-
-            modelBuilder.Entity("BlazorChat.Shared.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BlazorChat.Shared.Models.Message", b =>
-                {
-                    b.HasOne("BlazorChat.Shared.Models.User", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
